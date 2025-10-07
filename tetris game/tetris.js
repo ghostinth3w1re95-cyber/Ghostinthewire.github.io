@@ -1,6 +1,9 @@
+// 📱 Salli äänet heti ensimmäisestä kosketuksesta
+document.addEventListener('touchstart', () => {}, { once: true });
+
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
-context.scale(30, 30);  // Pääpelikentän skaalaus
+context.scale(30, 30);
 
 const nextPieceCanvas = document.getElementById('next-piece');
 const nextPieceContext = nextPieceCanvas.getContext('2d');
@@ -18,12 +21,12 @@ let gamePaused = false;
 
 const colors = [null, 'purple', 'yellow', 'orange', 'blue', 'cyan', 'green', 'red'];
 
-// 🎵 Äänentoisto
+// 🎵 Äänet
 function playSound(id) {
     const sound = document.getElementById(id);
     if (sound) {
         sound.currentTime = 0;
-        sound.play().catch(() => {}); // Estää virheilmoituksen mobiiliselaimissa
+        sound.play().catch(() => {}); // Estää virheilmoitukset mobiiliselaimissa
     }
 }
 
@@ -32,12 +35,12 @@ function updateScore() {
     document.getElementById('score').innerText = score;
 }
 
-// 🎮 Matriisin luonti (pelikenttä)
+// 🎮 Pelikenttä
 function createMatrix(w, h) {
     return Array.from({ length: h }, () => new Array(w).fill(0));
 }
 
-// 💥 Törmäystarkistus
+// 💥 Törmäys
 function collide(arena, player) {
     return player.matrix.some((row, y) =>
         row.some((value, x) =>
@@ -84,7 +87,7 @@ function movePlayer(offset) {
     }
 }
 
-// 🧹 Rivien tyhjennys ja pisteytys
+// 🧹 Rivien tyhjennys
 function clearLines() {
     let rowCount = 0;
     for (let y = arena.length - 1; y >= 0; y--) {
@@ -192,7 +195,7 @@ function playerReset() {
 let dropCounter = 0;
 let lastTime = 0;
 
-// 🕹️ Päivityssilmukka
+// 🔄 Päivityssilmukka
 function update(time = 0) {
     if (!gameRunning || gamePaused) return;
     const deltaTime = time - lastTime;
@@ -223,7 +226,7 @@ function pauseGame() {
     if (!gamePaused) update();
 }
 
-// ⌨️ Näppäimistöohjaus
+// ⌨️ Näppäimistö
 document.addEventListener('keydown', event => {
     if (!gameRunning || gamePaused) return;
     if (event.key === 'ArrowLeft' || event.key === 'a') {
@@ -260,27 +263,18 @@ const player = {
     heldPiece: null
 };
 
-// 📱 Mobiiliohjaimet
+// 📱 Mobiiliohjaimet — nyt kosketuksella
 ['left', 'right', 'rotate', 'drop'].forEach(id => {
     const btn = document.getElementById(id);
     if (!btn) return;
-    btn.addEventListener('click', () => {
+    btn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
         if (!gameRunning || gamePaused) return;
         switch (id) {
-            case 'left':
-                movePlayer({ x: -1, y: 0 });
-                playSound("move-sound");
-                break;
-            case 'right':
-                movePlayer({ x: 1, y: 0 });
-                playSound("move-sound");
-                break;
-            case 'rotate':
-                playerRotate();
-                break;
-            case 'drop':
-                drop();
-                break;
+            case 'left': movePlayer({ x: -1, y: 0 }); playSound("move-sound"); break;
+            case 'right': movePlayer({ x: 1, y: 0 }); playSound("move-sound"); break;
+            case 'rotate': playerRotate(); break;
+            case 'drop': drop(); break;
         }
     });
 });
