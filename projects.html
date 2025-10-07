@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Projektit — Minun Portfolio</title>
+  <meta name="description" content="Luettelo projekteista, kuvauksista ja teknisistä tiedoista.">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Siirry pääsisältöön</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="index.html" aria-label="Minun Portfolio - etusivu">
+          <img src="assets/logo.svg" alt="Minun Portfolio logo" width="160" height="40">
+        </a>
+      </div>
+
+      <!-- Hamppari-painike -->
+      <button class="menu-toggle" aria-label="Avaa päävalikko" aria-expanded="false">
+        <span class="hamburger"><span></span><span></span><span></span></span>
+      </button>
+
+      <!-- Navigaatio -->
+      <nav role="navigation" aria-label="Päävalikko">
+        <ul class="menu-links">
+          <li><a href="index.html">Etusivu</a></li>
+          <li><a href="about.html">Tietoja</a></li>
+          <li><a href="projects.html">Projektit</a></li>
+          <li><a href="contact.html">Yhteystiedot</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <h1>Projektit</h1>
+
+    <section id="proj1" aria-labelledby="proj1-title">
+      <h2 id="proj1-title">Verkkosivuprojekti</h2>
+      <div class="card">
+        <img src="assets/proj1.png" alt="Kuva verkkosivuprojektista" width="600" height="360">
+        <p>Toteutin CV interaktiivisella kuutiolla frost glass -efektillä.</p>
+        <p>Teknologiat: React, Tailwind, JS, JSON.</p>
+      </div>
+    </section>
+
+    <section id="proj2" aria-labelledby="proj2-title">
+  <h2 id="proj2-title">Tetris peli</h2>
+  <div class="card">
+    <img src="assets/proj2.png" alt="UI mockup" width="600" height="360">
+    <p>Keskeneräinen tetris peli omilla ääniefekteillä.</p>
+    <p>Teknologiat: HTML5, CSS ja JavaScript.</p>
+    <p><a href="tetris game/tetris.html" target="_blank" rel="noopener noreferrer" class="project-link">Avaa peli</a></p>
+  </div>
+</section>
+
+
+    <section id="proj3" aria-labelledby="proj3-title">
+      <h2 id="proj3-title">Lääketieteelle Tietokanta (KESKENERÄINEN)</h2>
+      <div class="card">
+        <img src="assets/proj3.png" alt="Responsiivinen UI" width="600" height="360">
+        <p>Pieni sovellus, joka toimii verkossa ja on tietokanta lääkäreille ja potilaille.</p>
+        <p>Teknologiat: MongoDB, JavaScript, JSON, CSS.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" role="contentinfo">
+    <p><a href="index.html">Etusivulle</a> · © 2025 Maxim Kotsalainen</p>
+  </footer>
+
+  <script src="assets/hamp.js"></script>
+</body>
+</html>

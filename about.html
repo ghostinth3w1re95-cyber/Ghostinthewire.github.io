@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tietoja — Minun Portfolio</title>
+  <meta name="description" content="Tietoja minusta: koulutus, taidot ja tavoitteet.">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Siirry pääsisältöön</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="index.html" aria-label="Minun Portfolio - etusivu">
+          <img src="assets/logo.svg" alt="Minun Portfolio logo" width="160" height="40">
+        </a>
+      </div>
+
+      <!-- Hamppari-painike -->
+      <button class="menu-toggle" aria-label="Avaa päävalikko" aria-expanded="false">
+        <span class="hamburger"><span></span><span></span><span></span></span>
+      </button>
+
+      <!-- Navigaatio -->
+      <nav role="navigation" aria-label="Päävalikko">
+        <ul class="menu-links">
+          <li><a href="index.html">Etusivu</a></li>
+          <li><a href="about.html" aria-current="page">Tietoja</a></li>
+          <li><a href="projects.html">Projektit</a></li>
+          <li><a href="contact.html">Yhteystiedot</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <article>
+      <h1>Tietoja minusta</h1>
+      <p>Olen ohjelmistokehityksen opiskelija, kiinnostunut erityisesti saavutettavuudesta ja responsiivisesta suunnittelusta. Opiskelen NodeJS, React, Tailwind ja MongoDB. Tykkään käydä salilla ja vapaa-ajalla rassata ajoneuvojen parissa.</p>
+
+      <h2>Koulutus</h2>
+      <ul>
+        <li>AMK Haaga-Helia, Tietojenkäsittely (opinnot kesken)</li>
+        <li>Stadin AO, tieto- ja viestintätekniikan perustutkinto (Ohjelmistokehitys), valmistunut 2024</li>
+        <li>Helsingin kielilukio, valmistunut 2023</li>
+        <li>Verkkokurssit: verkkosuunnittelu, HTML & CSS, Python, C# ja C</li>
+      </ul>
+
+      <h2>Tavoitteet</h2>
+      <p>Tavoitteenani on luoda esteettömiä ja käyttäjäystävällisiä verkkopalveluita sekä kehittää taitojani fullstack-kehityksessä.</p>
+    </article>
+  </main>
+
+  <footer class="container" role="contentinfo">
+    <p><a href="index.html">Etusivulle</a> · © 2025 Maxim Kotsalainen</p>
+  </footer>
+
+  <script src="assets/hamp.js"></script>
+</body>
+</html>
