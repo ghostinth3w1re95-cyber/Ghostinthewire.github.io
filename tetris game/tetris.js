@@ -248,6 +248,24 @@ const player = {
     nextPiece: 'I',
     heldPiece: null
 };
+// Mobiilipainikkeiden toiminnot
+document.getElementById('left').addEventListener('click', () => {
+    movePlayer({ x: -1, y: 0 });
+    playSound("move-sound");
+});
+
+document.getElementById('right').addEventListener('click', () => {
+    movePlayer({ x: 1, y: 0 });
+    playSound("move-sound");
+});
+
+document.getElementById('rotate').addEventListener('click', () => {
+    playerRotate();
+});
+
+document.getElementById('drop').addEventListener('click', () => {
+    drop();
+});
 
 document.getElementById('start-button').addEventListener('click', startGame);
 document.getElementById('pause-button').addEventListener('click', pauseGame);
