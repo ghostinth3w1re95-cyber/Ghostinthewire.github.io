@@ -1,154 +1,147 @@
 /* 🌌 Yleinen tyyli */
 body {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: white;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: white;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  touch-action: manipulation;
 }
 
 /* 🟦 Pelialueet */
 canvas {
-    border: 3px solid white;
-    display: block;
-    margin: 10px auto;
-    background-color: black;
-    max-width: 90vw;
-    height: auto;
-    box-shadow: 0 0 15px rgba(0, 0, 255, 0.4);
-    border-radius: 8px;
+  border: 3px solid white;
+  display: block;
+  margin: 10px auto;
+  background-color: black;
+  max-width: 85vw;
+  height: auto;
+  box-shadow: 0 0 15px rgba(0, 0, 255, 0.4);
+  border-radius: 8px;
 }
 
 /* 🧱 Otsikot */
 h1, h2 {
-    margin: 10px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-shadow: 0 0 5px #00f, 0 0 10px #0055ff;
+  margin: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px #00f, 0 0 10px #0055ff;
 }
 
 /* 🕹️ Start / Pause -painikkeet */
 #start-button, #pause-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #00f;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
-    transition: background-color 0.2s, transform 0.1s;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #00f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 #start-button:hover, #pause-button:hover {
-    background-color: #0055ff;
-    transform: scale(1.05);
+  background-color: #0055ff;
+  transform: scale(1.05);
 }
 
 /* 🎯 Next ja Hold -alueet */
 .next-hold-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .canvas-label {
-    position: absolute;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    top: -10px;
-    text-shadow: 0 0 3px black;
-}
-
-#hold-label {
-    left: 50px;
-}
-
-#next-label {
-    right: 50px;
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  top: -10px;
+  text-shadow: 0 0 3px black;
 }
 
 /* 📱 Mobiiliohjaimet */
 #mobile-controls {
-    display: none;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    padding-bottom: 30px;
+  display: none;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
 }
 
 #mobile-controls .ctrl {
-    width: 70px;
-    height: 70px;
-    font-size: 28px;
-    border: none;
-    border-radius: 15px;
-    background-color: #111;
-    color: white;
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
-    transition: background-color 0.15s, transform 0.1s;
+  width: 70px;
+  height: 70px;
+  font-size: 28px;
+  border: none;
+  border-radius: 15px;
+  background-color: #111;
+  color: white;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
+  transition: background-color 0.15s, transform 0.1s;
 }
 
 #mobile-controls .ctrl:active {
-    background-color: #444;
-    transform: scale(0.95);
+  background-color: #444;
+  transform: scale(0.95);
 }
 
 /* 📏 Pienet näytöt (puhelin & tabletti) */
 @media (max-width: 768px) {
-    #mobile-controls {
-        display: flex;
-    }
+  /* 🎮 Piilotetaan next/hold-boksit kokonaan */
+  .next-hold-container {
+    display: none;
+  }
 
-    canvas {
-        width: 90vw;
-        height: auto;
-    }
+  canvas {
+    width: 95vw;
+    height: auto;
+    max-height: 70vh;
+  }
 
-    #start-button, #pause-button {
-        width: 45%;
-        margin: 10px 5px;
-    }
+  #mobile-controls {
+    display: flex;
+  }
 
-    h1 {
-        font-size: 22px;
-    }
+  h1 {
+    font-size: 22px;
+  }
 
-    h2 {
-        font-size: 18px;
-    }
+  h2 {
+    font-size: 18px;
+  }
 
-    p {
-        font-size: 13px;
-        max-width: 90%;
-    }
-}
-
-/* ⚙️ Pienet yksityiskohdat */
-p {
+  #start-button, #pause-button {
+    width: 45%;
+    margin: 10px 5px;
     font-size: 14px;
-    margin: 15px auto;
-    max-width: 500px;
-    line-height: 1.4em;
-    color: #ccc;
+  }
+
+  #mobile-controls .ctrl {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 13px;
+    max-width: 90%;
+  }
 }
 
-/* 🌟 Pieni animaatio painikkeille */
-button {
-    transition: all 0.2s ease-in-out;
-}
-
-button:active {
-    transform: scale(0.97);
+/* ⚙️ Tekstien tyyli */
+p {
+  font-size: 14px;
+  margin: 15px auto;
+  max-width: 500px;
+  line-height: 1.4em;
+  color: #ccc;
 }
