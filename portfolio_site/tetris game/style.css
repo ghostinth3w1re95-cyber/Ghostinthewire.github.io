@@ -1,0 +1,57 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: white;
+}
+
+canvas {
+    border: 3px solid white;
+    display: block;
+    margin: 10px auto;
+    background-color: black;
+}
+
+h1, h2 {
+    margin: 10px;
+}
+
+#start-button, #pause-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #00f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#start-button:hover, #pause-button:hover {
+    background-color: #0055ff;
+}
+
+/* Container for the next and hold canvases */
+.next-hold-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Styling for the labels */
+.canvas-label {
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    top: -10px;
+}
+
+/* Positioning of the labels */
+#hold-label {
+    left: 50px;
+}
+
+#next-label {
+    right: 50px;
+}

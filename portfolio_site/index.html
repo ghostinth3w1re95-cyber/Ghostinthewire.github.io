@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aloitus — Minun Portfolio</title>
+  <meta name="description" content="Portfolio: esittely, projektit ja yhteystiedot. Responsiivinen ja saavutettava sivusto.">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Siirry pääsisältöön</a>
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="index.html" aria-label="Minun Portfolio - etusivu"><img src="assets/logo.svg" alt="Minun Portfolio logo" width="160" height="40"></a>
+      </div>
+
+      <!-- Hamppari-painike -->
+      <button class="menu-toggle" aria-label="Avaa päävalikko" aria-expanded="false">
+        <span class="hamburger"><span></span><span></span><span></span></span>
+      </button>
+
+      <!-- Navigaatio -->
+      <nav role="navigation" aria-label="Päävalikko">
+        <ul class="menu-links">
+          <li><a href="index.html">Etusivu</a></li>
+          <li><a href="about.html">Tietoja</a></li>
+          <li><a href="projects.html">Projektit</a></li>
+          <li><a href="contact.html">Yhteystiedot</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">Hei — olen opiskelija ja web-kehittäjä</h1>
+        <p class="lead">Tämä on esimerkkiprojektini portfolio. Sivusto on toteutettu HTML5:n, CSS:n ja pienen JavaScriptin avulla. Se on responsiivinen, semanttinen ja saavutettava.</p>
+        <p><a href="projects.html" class="button">Tutustu projekteihini →</a></p>
+      </div>
+      <aside aria-label="Pikakuvaukset">
+        <div class="card">
+          <h3>Palvelut</h3>
+          <ul>
+            <li>Responsiiviset verkkosivut</li>
+            <li>3D mallintaminen</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:1rem;">
+          <h3>Taitoni</h3>
+          <p>HTML5, JS, mongodb, mariandb, C#, C, C++, CSS, JSON, python, Blender, Unity, Audiomixer ja responsiivinen suunnittelu</p>
+        </div>
+      </aside>
+    </section>
+
+    <section aria-labelledby="works">
+      <h2 id="works">Viimeisimmät projektit</h2>
+      <div class="grid">
+        <article class="card" aria-labelledby="p1">
+          <img src="assets/proj1.png" alt="Projekti: Verkkosivu - esimerkki" width="600" height="360">
+          <h3 id="p1">Verkkosivuprojekti</h3>
+          <p>Moderni ja responsiivinen CV interaktiivisella kuutiolla.</p>
+          <p><a href="projects.html#proj1">Lue lisää</a></p>
+        </article>
+
+        <article class="card" aria-labelledby="p2">
+          <img src="assets/proj2.png" alt="Projekti: UI Mockup - esimerkki" width="600" height="360">
+          <h3 id="p2">Tetris</h3>
+          <p>Tetris peli nollasta omilla ääni efekteillä.</p>
+          <p><a href="projects.html#proj2">Lue lisää</a></p>
+        </article>
+
+        <article class="card" aria-labelledby="p3">
+          <img src="assets/proj3.png" alt="Projekti: Responsiivinen UI - esimerkki" width="600" height="360">
+          <h3 id="p3">Käyttäjärjestelmä</h3>
+          <p>Käyttöjärjestelmä lääkereille ja potilaille.</p>
+          <p><a href="projects.html#proj3">Lue lisää</a></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" role="contentinfo">
+    <p>© 2025 Maxim Kotsalainen — <a href="contact.html">Ota yhteyttä</a></p>
+  </footer>
+
+  <script src="assets/hamp.js"></script>
+</body>
+</html>
