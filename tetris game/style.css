@@ -95,17 +95,23 @@ h1, h2 {
 }
 
 /* 📏 Pienet näytöt (puhelin & tabletti) */
-@media (max-width: 768px) {
-  /* 🎮 Piilotetaan next/hold-boksit kokonaan */
-  .next-hold-container {
-    display: none;
-  }
+/* 📱 Pakotettu mobiiliversio – piilota next/hold */
+@media only screen and (max-width: 768px) {
+    .next-hold-container,
+    #hold-piece,
+    #next-piece,
+    #hold-label,
+    #next-label {
+        display: none !important;
+        visibility: hidden !important;
+    }
 
-  canvas {
-    width: 95vw;
-    height: auto;
-    max-height: 70vh;
-  }
+    canvas#tetris {
+        width: 95vw !important;
+        height: auto !important;
+        max-height: 70vh !important;
+    }
+
 
   #mobile-controls {
     display: flex;
