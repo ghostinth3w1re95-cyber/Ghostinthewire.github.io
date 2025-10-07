@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Tetris Game</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Tetris Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>TETRIS GAME</h1>
-  <h2>Score: <span id="score">0</span></h2>
+    <h1>TETRIS GAME</h1>
+    <h2>Score: <span id="score">0</span></h2>
 
-  <!-- Next / Hold container (piilotetaan mobiilissa CSS:llä) -->
-  <div class="next-hold-container">
-    <div style="position: relative;">
-      <canvas id="hold-piece" width="120" height="100"></canvas>
-      <div id="hold-label" class="canvas-label">Hold</div>
+    <!-- Next Piece ja Hold Piece -alueet -->
+    <div class="next-hold-container">
+        <div style="position: relative;">
+            <canvas id="hold-piece" width="120" height="100"></canvas>
+            <div id="hold-label" class="canvas-label">Hold</div>
+        </div>
+        <div style="position: relative;">
+            <canvas id="next-piece" width="120" height="100"></canvas>
+            <div id="next-label" class="canvas-label">Next</div>
+        </div>
     </div>
-    <div style="position: relative;">
-      <canvas id="next-piece" width="120" height="100"></canvas>
-      <div id="next-label" class="canvas-label">Next</div>
+
+    <!-- Pääpelikenttä -->
+    <canvas id="tetris" width="300" height="600"></canvas>
+
+    <!-- Ohjeteksti -->
+    <p>
+        Controls:
+        <b>W / ↑</b> = Rotate,
+        <b>A / ←</b> = Left,
+        <b>D / →</b> = Right,
+        <b>S / ↓</b> = Drop,
+        <b>C</b> = Hold
+    </p>
+
+    <!-- Painikkeet -->
+    <div style="margin-top: 10px;">
+        <button id="start-button">Start Game</button>
+        <button id="pause-button" disabled>Pause</button>
     </div>
-  </div>
 
-  <canvas id="tetris" width="300" height="600"></canvas>
+    <!-- Äänet -->
+    <audio id="move-sound" src="move.mp3" preload="auto"></audio>
+    <audio id="rotate-sound" src="rotate.mp3" preload="auto"></audio>
+    <audio id="drop-sound" src="drop.mp3" preload="auto"></audio>
+    <audio id="clear-sound" src="clear.mp3" preload="auto"></audio>
+    <audio id="gameover-sound" src="gameover.mp3" preload="auto"></audio>
 
-  <p>
-    Controls: <b>W / ↑</b> = Rotate, <b>A / ←</b> = Left,
-    <b>D / →</b> = Right, <b>S / ↓</b> = Drop, <b>C</b> = Hold
-  </p>
+    <!-- 📱 Mobiiliohjaimet -->
+    <div id="mobile-controls">
+        <button class="ctrl" id="left" aria-label="Move Left">◀️</button>
+        <button class="ctrl" id="rotate" aria-label="Rotate Piece">🔄</button>
+        <button class="ctrl" id="right" aria-label="Move Right">▶️</button>
+        <button class="ctrl" id="drop" aria-label="Drop Piece">⬇️</button>
+    </div>
 
-  <button id="start-button">Start Game</button>
-  <button id="pause-button" disabled>Pause</button>
-
-  <!-- Äänet -->
-  <audio id="move-sound" src="move.mp3"></audio>
-  <audio id="rotate-sound" src="rotate.mp3"></audio>
-  <audio id="drop-sound" src="drop.mp3"></audio>
-  <audio id="clear-sound" src="clear.mp3"></audio>
-  <audio id="gameover-sound" src="gameover.mp3"></audio>
-
-  <!-- Mobiiliohjaimet -->
-  <div id="mobile-controls">
-    <button class="ctrl" id="left">◀️</button>
-    <button class="ctrl" id="rotate">🔄</button>
-    <button class="ctrl" id="right">▶️</button>
-    <button class="ctrl" id="drop">⬇️</button>
-  </div>
-
-  <script src="tetris.js"></script>
+    <!-- JavaScript -->
+    <script src="tetris.js"></script>
 </body>
 </html>
