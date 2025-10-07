@@ -1,6 +1,6 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
-context.scale(30, 30);  // Scale the main game canvas
+context.scale(30, 30);  // Pääpelikentän skaalaus
 
 const nextPieceCanvas = document.getElementById('next-piece');
 const nextPieceContext = nextPieceCanvas.getContext('2d');
@@ -18,24 +18,26 @@ let gamePaused = false;
 
 const colors = [null, 'purple', 'yellow', 'orange', 'blue', 'cyan', 'green', 'red'];
 
+// 🎵 Äänentoisto
 function playSound(id) {
     const sound = document.getElementById(id);
     if (sound) {
         sound.currentTime = 0;
-        sound.play().catch(err => {
-            console.log('Error playing sound:', err);
-        });
+        sound.play().catch(() => {}); // Estää virheilmoituksen mobiiliselaimissa
     }
 }
 
+// 🔢 Pisteiden päivitys
 function updateScore() {
     document.getElementById('score').innerText = score;
 }
 
+// 🎮 Matriisin luonti (pelikenttä)
 function createMatrix(w, h) {
     return Array.from({ length: h }, () => new Array(w).fill(0));
 }
 
+// 💥 Törmäystarkistus
 function collide(arena, player) {
     return player.matrix.some((row, y) =>
         row.some((value, x) =>
@@ -44,6 +46,7 @@ function collide(arena, player) {
     );
 }
 
+// 🧩 Pelaajan ja kentän yhdistäminen
 function merge(arena, player) {
     player.matrix.forEach((row, y) => {
         row.forEach((value, x) => {
@@ -54,10 +57,24 @@ function merge(arena, player) {
     });
 }
 
+// 🔄 Palikan kääntö
 function rotate(matrix) {
     return matrix[0].map((_, i) => matrix.map(row => row[i])).reverse();
 }
 
+function playerRotate() {
+    playSound("rotate-sound");
+    const pos = player.pos.x;
+    let offset = 1;
+    player.matrix = rotate(player.matrix);
+    while (collide(arena, player)) {
+        player.pos.x += offset;
+        offset = -(offset + (offset > 0 ? 1 : -1));
+        if (offset > player.matrix[0].length) return;
+    }
+}
+
+// ⬅️➡️ Liikkuminen
 function movePlayer(offset) {
     player.pos.x += offset.x;
     player.pos.y += offset.y;
@@ -67,22 +84,10 @@ function movePlayer(offset) {
     }
 }
 
-function playerRotate() {
-    playSound("rotate-sound");
-    const pos = player.pos.x;
-    let offset = 1;
-    player.matrix = rotate(player.matrix);
-
-    while (collide(arena, player)) {
-        player.pos.x += offset;
-        offset = -(offset + (offset > 0 ? 1 : -1));
-        if (offset > player.matrix[0].length) return;
-    }
-}
-
+// 🧹 Rivien tyhjennys ja pisteytys
 function clearLines() {
     let rowCount = 0;
-    outer: for (let y = arena.length - 1; y >= 0; y--) {
+    for (let y = arena.length - 1; y >= 0; y--) {
         if (arena[y].every(value => value !== 0)) {
             arena.splice(y, 1);
             arena.unshift(new Array(COLUMNS).fill(0));
@@ -96,6 +101,7 @@ function clearLines() {
     updateScore();
 }
 
+// 🔷 Palikkatyypit
 function createPiece(type) {
     const pieces = {
         'T': [[0, 1, 0], [1, 1, 1], [0, 0, 0]],
@@ -109,6 +115,7 @@ function createPiece(type) {
     return pieces[type];
 }
 
+// 🎨 Piirtäminen
 function drawMatrix(matrix, offset, context) {
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
@@ -146,6 +153,7 @@ function drawHeldPiece() {
     }
 }
 
+// ⬇️ Pudotus
 function drop() {
     playSound("drop-sound");
     player.pos.y++;
@@ -158,14 +166,13 @@ function drop() {
     dropCounter = 0;
 }
 
+// 🔁 Uusi palikka
 function playerReset() {
     const pieces = 'ILJOTSZ';
     player.matrix = createPiece(player.nextPiece);
     player.pos.y = 0;
     player.pos.x = Math.floor(COLUMNS / 2) - Math.floor(player.matrix[0].length / 2);
-
     player.nextPiece = pieces[Math.floor(Math.random() * pieces.length)];
-
     drawNextPiece();
     drawHeldPiece();
 
@@ -185,6 +192,7 @@ function playerReset() {
 let dropCounter = 0;
 let lastTime = 0;
 
+// 🕹️ Päivityssilmukka
 function update(time = 0) {
     if (!gameRunning || gamePaused) return;
     const deltaTime = time - lastTime;
@@ -197,6 +205,7 @@ function update(time = 0) {
     requestAnimationFrame(update);
 }
 
+// ▶️ Käynnistys / Tauko
 function startGame() {
     arena.forEach(row => row.fill(0));
     gameRunning = true;
@@ -214,6 +223,7 @@ function pauseGame() {
     if (!gamePaused) update();
 }
 
+// ⌨️ Näppäimistöohjaus
 document.addEventListener('keydown', event => {
     if (!gameRunning || gamePaused) return;
     if (event.key === 'ArrowLeft' || event.key === 'a') {
@@ -241,6 +251,7 @@ document.addEventListener('keydown', event => {
     }
 });
 
+// 🧱 Pelialue ja pelaaja
 const arena = createMatrix(COLUMNS, ROWS);
 const player = {
     pos: { x: 0, y: 0 },
@@ -248,24 +259,32 @@ const player = {
     nextPiece: 'I',
     heldPiece: null
 };
-// Mobiilipainikkeiden toiminnot
-document.getElementById('left').addEventListener('click', () => {
-    movePlayer({ x: -1, y: 0 });
-    playSound("move-sound");
+
+// 📱 Mobiiliohjaimet
+['left', 'right', 'rotate', 'drop'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        if (!gameRunning || gamePaused) return;
+        switch (id) {
+            case 'left':
+                movePlayer({ x: -1, y: 0 });
+                playSound("move-sound");
+                break;
+            case 'right':
+                movePlayer({ x: 1, y: 0 });
+                playSound("move-sound");
+                break;
+            case 'rotate':
+                playerRotate();
+                break;
+            case 'drop':
+                drop();
+                break;
+        }
+    });
 });
 
-document.getElementById('right').addEventListener('click', () => {
-    movePlayer({ x: 1, y: 0 });
-    playSound("move-sound");
-});
-
-document.getElementById('rotate').addEventListener('click', () => {
-    playerRotate();
-});
-
-document.getElementById('drop').addEventListener('click', () => {
-    drop();
-});
-
+// 🔘 Napit
 document.getElementById('start-button').addEventListener('click', startGame);
 document.getElementById('pause-button').addEventListener('click', pauseGame);
