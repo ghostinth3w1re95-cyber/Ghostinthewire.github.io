@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>TETRIS GAME</h1>
+    <h2>Score: <span id="score">0</span></h2>
+
+    <!-- Container for next piece and hold piece -->
+    <div class="next-hold-container">
+        <div style="position: relative;">
+            <canvas id="hold-piece" width="120" height="100"></canvas>
+            <div id="hold-label" class="canvas-label">Hold</div>
+        </div>
+        <div style="position: relative;">
+            <canvas id="next-piece" width="120" height="100"></canvas>
+            <div id="next-label" class="canvas-label">Next Piece</div>
+        </div>
+    </div>
+
+    <canvas id="tetris" width="300" height="600"></canvas>
+
+    <p>
+        Controls: <b>W / ↑</b> = Rotate, <b>A / ←</b> = Left,
+        <b>D / →</b> = Right, <b>S / ↓</b> = Drop, <b>C</b> = Hold
+    </p>
+
+    <button id="start-button">Start Game</button>
+    <button id="pause-button" disabled>Pause</button>
+
+    <audio id="move-sound" src="move.mp3"></audio>
+    <audio id="rotate-sound" src="rotate.mp3"></audio>
+    <audio id="drop-sound" src="drop.mp3"></audio>
+    <audio id="clear-sound" src="clear.mp3"></audio>
+    <audio id="gameover-sound" src="gameover.mp3"></audio>
+
+    <script src="tetris.js"></script>
+</body>
+</html>
